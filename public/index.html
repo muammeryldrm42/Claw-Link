@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔗 Link Shortener - Fast, Free, Analytics</title>
+    <meta name="description" content="Shorten your links instantly with analytics, QR codes, and custom short codes. No sign-up required!">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>🔗 Link Shortener</h1>
+            <p class="subtitle">Fast • Free • Analytics • QR Codes</p>
+            
+            <!-- Main Form -->
+            <div class="shortener-box">
+                <input 
+                    type="url" 
+                    id="urlInput" 
+                    placeholder="Paste your long URL here..."
+                    onkeypress="if(event.key === 'Enter') shortenURL()"
+                >
+                
+                <div class="options-row">
+                    <input 
+                        type="text" 
+                        id="customCode" 
+                        placeholder="Custom code (optional)"
+                        maxlength="20"
+                    >
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Password protect (optional)"
+                    >
+                </div>
+                
+                <button onclick="shortenURL()" id="shortenBtn" class="btn-primary">
+                    ✨ Shorten URL
+                </button>
+            </div>
+
+            <!-- Features -->
+            <div class="features">
+                <div class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <span>Instant</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <span>Analytics</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🔐</span>
+                    <span>Password</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📱</span>
+                    <span>QR Code</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading" style="display: none;">
+        <div class="loader"></div>
+        <p>Creating short link...</p>
+    </div>
+
+    <!-- Error -->
+    <div id="error" class="error" style="display: none;"></div>
+
+    <!-- Result Section -->
+    <div id="result" class="result-section" style="display: none;">
+        <div class="container">
+            <div class="result-card">
+                <h2>✅ Your short link is ready!</h2>
+                
+                <div class="short-url-box">
+                    <input type="text" id="shortUrl" readonly>
+                    <button onclick="copyToClipboard()" class="btn-copy">
+                        📋 Copy
+                    </button>
+                </div>
+
+                <div class="result-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Original:</span>
+                        <a href="#" id="originalUrl" target="_blank" class="meta-value"></a>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Code:</span>
+                        <span id="linkCode" class="meta-value"></span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Created:</span>
+                        <span id="createdAt" class="meta-value"></span>
+                    </div>
+                </div>
+
+                <!-- QR Code -->
+                <div class="qr-section">
+                    <h3>📱 QR Code</h3>
+                    <img id="qrCode" alt="QR Code" class="qr-code">
+                    <button onclick="downloadQR()" class="btn-secondary">
+                        💾 Download QR
+                    </button>
+                </div>
+
+                <!-- Analytics Link -->
+                <div class="analytics-link">
+                    <button onclick="showAnalytics()" class="btn-analytics">
+                        📊 View Analytics
+                    </button>
+                </div>
+
+                <!-- Actions -->
+                <div class="result-actions">
+                    <button onclick="resetForm()" class="btn-secondary">
+                        ➕ Create Another
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Section -->
+    <div id="analytics" class="analytics-section" style="display: none;">
+        <div class="container">
+            <button onclick="hideAnalytics()" class="btn-back">← Back</button>
+            
+            <div class="analytics-card">
+                <h2>📊 Analytics Dashboard</h2>
+                
+                <!-- Summary Stats -->
+                <div class="stats-grid" id="statsGrid"></div>
+
+                <!-- Charts -->
+                <div class="charts-container">
+                    <div class="chart-box">
+                        <h3>📅 Clicks by Date</h3>
+                        <div id="dateChart" class="chart"></div>
+                    </div>
+
+                    <div class="chart-box">
+                        <h3>🌍 Clicks by Country</h3>
+                        <div id="countryChart" class="chart"></div>
+                    </div>
+
+                    <div class="chart-box">
+                        <h3>🔗 Referrer Sources</h3>
+                        <div id="referrerChart" class="chart"></div>
+                    </div>
+
+                    <div class="chart-box">
+                        <h3>💻 Browser Distribution</h3>
+                        <div id="browserChart" class="chart"></div>
+                    </div>
+
+                    <div class="chart-box">
+                        <h3>📱 Device Types</h3>
+                        <div id="deviceChart" class="chart"></div>
+                    </div>
+                </div>
+
+                <!-- Recent Clicks -->
+                <div class="recent-clicks">
+                    <h3>🕒 Recent Clicks</h3>
+                    <div id="recentClicks" class="clicks-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ • No API Keys • Vercel Ready • Open Source</p>
+            <p class="footer-note">
+                Your data is stored temporarily. Links may expire after inactivity.
+            </p>
+        </div>
+    </footer>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

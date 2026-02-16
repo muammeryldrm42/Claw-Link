@@ -1,0 +1,28 @@
+{
+  "name": "link-shortener-analytics",
+  "version": "1.0.0",
+  "description": "Modern Link Shortener with Analytics, QR Codes & Custom Slugs - No API Key Required",
+  "main": "api/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build needed'",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "link-shortener",
+    "url-shortener",
+    "analytics",
+    "qr-code",
+    "vercel",
+    "serverless"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/kv": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
